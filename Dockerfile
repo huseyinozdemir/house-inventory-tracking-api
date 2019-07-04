@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.7.3-alpine
 MAINTAINER Medglobal
 
 # Bu, Python'a Docker kapsayıcılarında Python çalıştırırken önerilen arabelleğe alınmamış modda çalışmasını söyler.
