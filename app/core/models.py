@@ -55,7 +55,7 @@ class FlatManager(models.Manager):
             raise ValueError('Flat must have a name')
         if not buildingId:
             raise ValueError('Flat must have a building')
-        flat = self.model(name=name,buildingId=buildingId,**args)
+        flat = self.model(name=name, buildingId=buildingId, **args)
         flat.save(using=self._db)
 
         return flat
@@ -84,7 +84,7 @@ class FixtureManager(models.Manager):
         if not priceValue:
             raise ValueError('Fixture must have a Price Value')
         fixture = self.model(name=name, flatId=flatId,
-                          priceValue=priceValue, **args)
+                             priceValue=priceValue, **args)
         fixture.save(using=self._db)
 
         return fixture
