@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
 
 class UserManager(BaseUserManager):
 
-    def CreateUser(self, email, password=None, **args):
+    def create_user(self, email, password=None, **args):
         """Create and Save user"""
         if not email:
             raise ValueError('Users must have an email address')
@@ -15,11 +15,11 @@ class UserManager(BaseUserManager):
 
         return user
 
-    def CreateSuperuser(self, email, password=None, **args):
+    def create_superuser(self, email, password=None, **args):
         """Create and Save Superuser"""
-        user = self.CreateUser(email, password)
-        user.isStaff = True
-        user.isSuperuser = True
+        user = self.create_user(email, password)
+        user.is_staff = True
+        user.is_superuser = True
         user.save(using=self._db)
 
         return user
@@ -29,9 +29,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     """User model"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
-    isActive = models.BooleanField(default=True)
-    isStaff = models.BooleanField(default=True)
-    isSuperuser = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=True)
+    is_superuser = models.BooleanField(default=False)
 
     objects = UserManager()
 
@@ -40,7 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class BuildingManager(models.Manager):
 
-    def CreateBuilding(self, name=None, **args):
+    def create_building(self, name=None, **args):
         """Create and Save Building"""
         if not name:
             raise ValueError('Buildind must have a name')
@@ -53,20 +53,20 @@ class BuildingManager(models.Manager):
 class Building(models.Model):
     """Buildin table"""
     name = models.CharField(max_length=255)
-    isDelete = models.BooleanField(default=False)
+    is_delete = models.BooleanField(default=False)
 
     objects = BuildingManager()
 
 
 class FlatManager(models.Manager):
 
-    def CreateFlat(self, name=None, buildingId=None, **args):
+    def create_flat(self, name=None, building_id=None, **args):
         """Create and Save Flat"""
         if not name:
             raise ValueError('Flat must have a name')
-        if not buildingId:
+        if not building_id:
             raise ValueError('Flat must have a building')
-        flat = self.model(name=name, buildingId=buildingId, **args)
+        flat = self.model(name=name, building_id=building_id, **args)
         flat.save(using=self._db)
 
         return flat
@@ -75,27 +75,28 @@ class FlatManager(models.Manager):
 class Flat(models.Model):
     """Flat table"""
     name = models.CharField(max_length=255)
-    buildingId = models.ForeignKey(
+    building_id = models.ForeignKey(
         Building,
         on_delete=models.DO_NOTHING
     )
-    isDelete = models.BooleanField(default=False)
+    is_delete = models.BooleanField(default=False)
 
     objects = FlatManager()
 
 
 class FixtureManager(models.Manager):
 
-    def CreateFixture(self, name=None, flatId=None, priceValue=None, **args):
+    def create_fixture(self, name=None, flat_id=None, price_value=None,
+                       **args):
         """Create and Save Fixture"""
         if not name:
             raise ValueError('Fixture must have a name')
-        if not flatId:
+        if not flat_id:
             raise ValueError('Fixture must have a Flat')
-        if not priceValue:
+        if not price_value:
             raise ValueError('Fixture must have a Price Value')
-        fixture = self.model(name=name, flatId=flatId,
-                             priceValue=priceValue, **args)
+        fixture = self.model(name=name, flat_id=flat_id,
+                             price_value=price_value, **args)
         fixture.save(using=self._db)
 
         return fixture
@@ -104,11 +105,11 @@ class FixtureManager(models.Manager):
 class Fixture(models.Model):
     """Fixture table"""
     name = models.CharField(max_length=255)
-    flatId = models.ForeignKey(
+    flat_id = models.ForeignKey(
         Flat,
         on_delete=models.DO_NOTHING
     )
-    isDelete = models.BooleanField(default=False)
-    priceValue = models.FloatField(default=0)
+    is_delete = models.BooleanField(default=False)
+    price_value = models.FloatField(default=0)
 
     objects = FixtureManager()
