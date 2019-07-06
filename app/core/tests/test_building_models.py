@@ -5,6 +5,6 @@ from core.models import BuildingManager
 class BuildingModelTests(TestCase):
 
     def test_new_building_empty_name(self):
-        """Test creating user with no email raises error"""
+        """Test creating building with no name raises error"""
         with self.assertRaises(ValueError):
-            BuildingManager.CreateBuilding(None)
+            BuildingManager.CreateBuilding(self, name=None)
