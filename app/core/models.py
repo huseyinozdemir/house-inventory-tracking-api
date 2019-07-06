@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
                                         PermissionsMixin
 
+
 class UserManager(BaseUserManager):
 
     def CreateUser(self, email, password=None, **args):
@@ -24,5 +25,25 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
+
+class BuildingManager(models.Manager):
+
+    def CreateBuilding(self, name=None, **args):
+        """Create and Save Building"""
+        if not name:
+            raise ValueError('Buildind must have an name')
+        building = self.model(name=name, **args)
+        building.save(using=self._db)
+
+        return building
+
+
+class Building(models.Model):
+    """Buildin table"""
+    name = models.CharField(max_length=255)
+    isDelete = models.BooleanField(default=True)
+
+    objects = BuildingManager()
 
 
