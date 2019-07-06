@@ -24,4 +24,20 @@ class UserAdmin(BaseUserAdmin):
     )
 
 
+class BuildingAdmin(admin.ModelAdmin):
+    ordering = ['id']
+    list_display = ['name']
+    fieldsets = (
+        (None, {'fields': ('name',)}),
+    )
+
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide', ),
+            'fields': ('name')
+        })
+    )
+
+
 admin.site.register(models.User, UserAdmin)
+admin.site.register(models.Building, BuildingAdmin)
