@@ -10,6 +10,19 @@ services:
             - ./app:/app
         command: >
             sh -c "python manage.py runserver 0.0.0.0:8000"
+        environment:
+            - DB_HOST=db
+            - DB_NAME=app
+            - DB_USER=postgres
+            - DB_PASS=supersecretpassword
+
+
+    db:
+        image: postgress:10-alpine
+        environment:
+            - POSTGRESS_DB=app
+            - POSTGRESS_USER=postgres
+            - POSTGRESS_PASSWORD=supersecretpassword
 
 # django projesi baslatmak icin console uzerinden calistirilacak
 # docker-compose run app sh -c "django-admin.py startproject app ."
