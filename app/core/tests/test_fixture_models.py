@@ -1,5 +1,15 @@
 from django.test import TestCase
-from core.models import Fixture
+from core.models import Fixture, Flat, Building
+
+
+def sample_building(name="A2"):
+    """Create a sample building"""
+    return Building.objects.create_building(name)
+
+
+def sample_flat(name="A2"):
+    """Create a sample building"""
+    return Flat.objects.create_flat(name, sample_building())
 
 
 class FixtureModelTests(TestCase):
@@ -21,3 +31,13 @@ class FixtureModelTests(TestCase):
         with self.assertRaises(ValueError):
             Fixture.objects.create_fixture(name='a', flat_id=1,
                                            price_value=None)
+
+    def test_fixture_str(self):
+        """Test the fixture string representation"""
+        fixture = Fixture.objects.create_fixture(
+            name='Buzdolabi',
+            flat_id=sample_flat(),
+            price_value=10
+        )
+
+        self.assertEqual(str(fixture), fixture.name)

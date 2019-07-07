@@ -41,3 +41,5 @@ class BuildingAdmin(admin.ModelAdmin):
 
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Building, BuildingAdmin)
+admin.site.register(models.Flat)
+admin.site.register(models.Fixture)

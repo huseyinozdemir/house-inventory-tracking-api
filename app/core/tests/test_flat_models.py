@@ -1,5 +1,10 @@
 from django.test import TestCase
-from core.models import Flat
+from core.models import Flat, Building
+
+
+def sample_building(name="A2"):
+    """Create a sample building"""
+    return Building.objects.create_building(name)
 
 
 class FlatModelTests(TestCase):
@@ -13,3 +18,12 @@ class FlatModelTests(TestCase):
         """Test creating flat with no building raises error"""
         with self.assertRaises(ValueError):
             Flat.objects.create_flat(name='a', building_id=None)
+
+    def test_flat_str(self):
+        """Test the flat string representation"""
+        flat = Flat.objects.create_flat(
+            name='D1',
+            building_id=sample_building()
+        )
+
+        self.assertEqual(str(flat), flat.name)

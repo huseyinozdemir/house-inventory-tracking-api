@@ -57,6 +57,9 @@ class Building(models.Model):
 
     objects = BuildingManager()
 
+    def __str__(self):
+        return self.name
+
 
 class FlatManager(models.Manager):
 
@@ -82,6 +85,9 @@ class Flat(models.Model):
     is_delete = models.BooleanField(default=False)
 
     objects = FlatManager()
+
+    def __str__(self):
+        return self.name
 
 
 class FixtureManager(models.Manager):
@@ -113,3 +119,6 @@ class Fixture(models.Model):
     price_value = models.FloatField(default=0)
 
     objects = FixtureManager()
+
+    def __str__(self):
+        return self.name
