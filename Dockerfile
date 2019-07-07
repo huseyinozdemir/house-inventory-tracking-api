@@ -8,6 +8,13 @@ ENV PYTHONUNBUFERRED 1
 
 # Gereksinimlerin yuklenmesi
 COPY ./requirements.txt /requirements.txt
+
+# WARNING: Ignoring APKINDEX.5a59b88b.tar.gz: No such file or directory
+# WARNING: Ignoring APKINDEX.7c1f02d6.tar.gz: No such file or directory
+# alttaki iki satir ustteki uyarilar icin eklendi
+RUN rm -rf /var/cache/apk/* && \
+    rm -rf /tmp/*
+RUN apk update
 RUN apk add --update --no-cache postgresql-client
 RUN apk add --update --no-cache --virtual .tmp-build-deps \
 	gcc libc-dev linux-headers postgresql-dev
@@ -20,4 +27,3 @@ COPY ./app /app
 
 # uygulamaları çalıştıracak kullanıcıyı oluşturalım.
 RUN adduser -D user
-	
