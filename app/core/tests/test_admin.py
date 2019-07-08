@@ -6,14 +6,22 @@ from core.models import Building
 from django.urls import reverse
 
 
+def sample_user(email='test@pythontr.com', password='123qwe'):
+    """Create a sample user"""
+    return get_user_model().objects.create_user(email, password)
+
+
 class AdminSiteTests(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.building = Building.objects.create_building(name='A3')
         self.admin_user = get_user_model().objects.create_superuser(
             email='huseyin@pythontr.com',
             password='password123',
+        )
+        self.building = Building.objects.create_building(
+            name='A3',
+            user=self.admin_user
         )
         self.client.force_login(self.admin_user)
         self.user = get_user_model().objects.create_user(

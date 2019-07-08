@@ -28,13 +28,13 @@ class BuildingAdmin(admin.ModelAdmin):
     ordering = ['id']
     list_display = ['name']
     fieldsets = (
-        (None, {'fields': ('name',)}),
+        (None, {'fields': ('name', 'user',)}),
     )
 
     add_fieldsets = (
         (None, {
             'classes': ('wide', ),
-            'fields': ('name')
+            'fields': ('name', 'user',)
         })
     )
 

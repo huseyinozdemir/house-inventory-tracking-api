@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
                                         PermissionsMixin
 
+from django.conf import settings
+
 
 class UserManager(BaseUserManager):
 
@@ -38,13 +40,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
 
-class BuildingManager(models.Manager):
+class BuildingManager(BaseUserManager):
 
-    def create_building(self, name=None, **args):
-        """Create and Save Building"""
+    def create_building(self, name=None, user=None, **args):
+        """Create and Save Flat"""
         if not name:
-            raise ValueError('Buildind must have a name')
-        building = self.model(name=name, **args)
+            raise ValueError('Flat must have a name')
+        if not user:
+            raise ValueError('Flat must have an user')
+        building = self.model(name=name, user=user, **args)
         building.save(using=self._db)
 
         return building
@@ -53,7 +57,10 @@ class BuildingManager(models.Manager):
 class Building(models.Model):
     """Buildin table"""
     name = models.CharField(max_length=255)
-    is_delete = models.BooleanField(default=False)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
 
     objects = BuildingManager()
 
@@ -61,15 +68,17 @@ class Building(models.Model):
         return self.name
 
 
-class FlatManager(models.Manager):
+class FlatManager(BaseUserManager):
 
-    def create_flat(self, name=None, building_id=None, **args):
+    def create_flat(self, name=None, user=None, building=None, **args):
         """Create and Save Flat"""
         if not name:
             raise ValueError('Flat must have a name')
-        if not building_id:
+        if not user:
+            raise ValueError('Flat must have an user')
+        if not building:
             raise ValueError('Flat must have a building')
-        flat = self.model(name=name, building_id=building_id, **args)
+        flat = self.model(name=name, user=user, building_id=building, **args)
         flat.save(using=self._db)
 
         return flat
@@ -78,11 +87,14 @@ class FlatManager(models.Manager):
 class Flat(models.Model):
     """Flat table"""
     name = models.CharField(max_length=255)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
     building_id = models.ForeignKey(
         Building,
         on_delete=models.DO_NOTHING
     )
-    is_delete = models.BooleanField(default=False)
 
     objects = FlatManager()
 
@@ -90,19 +102,53 @@ class Flat(models.Model):
         return self.name
 
 
-class FixtureManager(models.Manager):
+class RoomManager(BaseUserManager):
 
-    def create_fixture(self, name=None, flat_id=None, price_value=None,
-                       **args):
+    def create_room(self, name=None, user=None, flat=None, **args):
+        """Create and Save Flat"""
+        if not name:
+            raise ValueError('Flat must have a name')
+        if not user:
+            raise ValueError('Flat must have an user')
+        if not flat:
+            raise ValueError('Flat must have a flat')
+        flat = self.model(name=name, user=user, flat_id=flat, **args)
+        flat.save(using=self._db)
+
+        return flat
+
+
+class Room(models.Model):
+    """Room table"""
+
+    name = models.CharField(max_length=255)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    flat_id = models.ForeignKey(
+        Flat,
+        related_name='flat',
+        on_delete=models.DO_NOTHING
+    )
+
+    objects = RoomManager()
+
+    def __str__(self):
+        return self.name
+
+
+class FixtureManager(BaseUserManager):
+
+    def create_fixture(self, name=None, user=None, room=None, **args):
         """Create and Save Fixture"""
         if not name:
             raise ValueError('Fixture must have a name')
-        if not flat_id:
-            raise ValueError('Fixture must have a Flat')
-        if not price_value:
-            raise ValueError('Fixture must have a Price Value')
-        fixture = self.model(name=name, flat_id=flat_id,
-                             price_value=price_value, **args)
+        if not user:
+            raise ValueError('Fixture must have an user')
+        if not room:
+            raise ValueError('Fixture must have an room')
+        fixture = self.model(name=name, user=user, room_id=room, **args)
         fixture.save(using=self._db)
 
         return fixture
@@ -111,11 +157,14 @@ class FixtureManager(models.Manager):
 class Fixture(models.Model):
     """Fixture table"""
     name = models.CharField(max_length=255)
-    flat_id = models.ForeignKey(
-        Flat,
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    room_id = models.ForeignKey(
+        Room,
         on_delete=models.DO_NOTHING
     )
-    is_delete = models.BooleanField(default=False)
     price_value = models.FloatField(default=0)
 
     objects = FixtureManager()
