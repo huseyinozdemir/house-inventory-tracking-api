@@ -93,7 +93,7 @@ class Flat(models.Model):
     )
     building_id = models.ForeignKey(
         Building,
-        on_delete=models.DO_NOTHING
+        on_delete=models.CASCADE,
     )
 
     objects = FlatManager()
@@ -128,8 +128,7 @@ class Room(models.Model):
     )
     flat_id = models.ForeignKey(
         Flat,
-        related_name='flat',
-        on_delete=models.DO_NOTHING
+        on_delete=models.CASCADE,
     )
 
     objects = RoomManager()
@@ -163,7 +162,7 @@ class Fixture(models.Model):
     )
     room_id = models.ForeignKey(
         Room,
-        on_delete=models.DO_NOTHING
+        on_delete=models.CASCADE,
     )
     price_value = models.FloatField(default=0)
 
