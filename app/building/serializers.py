@@ -38,9 +38,22 @@ class BuildingSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
 
+class UserFilteredPrimaryKeyRelatedField(serializers.PrimaryKeyRelatedField):
+    def get_queryset(self):
+        request = self.context.get('request', None)
+        queryset = super(
+            UserFilteredPrimaryKeyRelatedField, self
+        ).get_queryset()
+        if not request or not queryset:
+            return None
+        return queryset.filter(user=request.user)
+
+
 class FlatSerializer(serializers.ModelSerializer):
     """Serializer for flat objects"""
     building_name = serializers.ReadOnlyField(source='building_id.name')
+    building_id = UserFilteredPrimaryKeyRelatedField(queryset=Building.objects)
+
     total_price = serializers.SerializerMethodField()
 
     def get_total_price(self, obj):
@@ -70,6 +83,7 @@ class FlatSerializer(serializers.ModelSerializer):
 class RoomSerializer(serializers.ModelSerializer):
     """Serializer for flat objects"""
     flat_name = serializers.ReadOnlyField(source='flat_id.name')
+    flat_id = UserFilteredPrimaryKeyRelatedField(queryset=Flat.objects)
     total_price = serializers.SerializerMethodField()
 
     def get_total_price(self, obj):
@@ -91,6 +105,7 @@ class RoomSerializer(serializers.ModelSerializer):
 class FixtureSerializer(serializers.ModelSerializer):
     """Serializer for flat objects"""
     room_name = serializers.ReadOnlyField(source='room_id.name')
+    room_id = UserFilteredPrimaryKeyRelatedField(queryset=Room.objects)
 
     class Meta:
         model = Fixture
