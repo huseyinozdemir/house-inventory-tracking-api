@@ -1,0 +1,238 @@
+[
+    {
+        "Id": "b8219dcfc5fde91453143569b66bcb8225974fb010c54e988bc3cc3fe0e09b1e",
+        "Created": "2019-07-10T11:39:54.238967654Z",
+        "Path": "docker-entrypoint.sh",
+        "Args": [
+            "postgres"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 10170,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2019-07-10T11:39:55.483567448Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:3f792cc0db59626c451e562a1e4fbab28ce698940b9e3b1fb677a6b689c4c474",
+        "ResolvConfPath": "/var/lib/docker/containers/b8219dcfc5fde91453143569b66bcb8225974fb010c54e988bc3cc3fe0e09b1e/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/b8219dcfc5fde91453143569b66bcb8225974fb010c54e988bc3cc3fe0e09b1e/hostname",
+        "HostsPath": "/var/lib/docker/containers/b8219dcfc5fde91453143569b66bcb8225974fb010c54e988bc3cc3fe0e09b1e/hosts",
+        "LogPath": "/var/lib/docker/containers/b8219dcfc5fde91453143569b66bcb8225974fb010c54e988bc3cc3fe0e09b1e/b8219dcfc5fde91453143569b66bcb8225974fb010c54e988bc3cc3fe0e09b1e-json.log",
+        "Name": "/house-inventory-tracking-api_db_1",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "d69f54a472c353c2b33d6726e5a42b8f025ae73aee480f85750d4e65a272970d:/var/lib/postgresql/data:rw"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "house-inventory-tracking-api_house-network",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": [],
+            "CapAdd": null,
+            "CapDrop": null,
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "shareable",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DiskQuota": 0,
+            "KernelMemory": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": 0,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/a9be138ae50d2ea7129b90fad2b850fa1f226180b05db14e6634ddbeeed94700-init/diff:/var/lib/docker/overlay2/ee8f707be6dbae0fae77f17d78cb8c8d4eae6c9897f97a107da2bf6a51ec2ae9/diff:/var/lib/docker/overlay2/8231995feb283a6705c5dd1e4564b5f51bd8e6defa0c82dd42e3ef8271518de2/diff:/var/lib/docker/overlay2/d38d2110c8c0da359624b82f7f56d02ed4482db744bad3782862086f3b1fa3a6/diff:/var/lib/docker/overlay2/eb78e5605eeca4e2b2be5f77713f5881086d7c0c2e995ceec349fb1aec9bbf54/diff:/var/lib/docker/overlay2/8bf051d54374993707422ca5fa04f9335ac40c8581bd5f8ed00b17dfa4d35636/diff:/var/lib/docker/overlay2/9582885b4cbfdbb6b7f533407e9b5f3511e03c7de7e92840a5aa98a5c29b88a9/diff:/var/lib/docker/overlay2/636a6388519721325f5de0b8fb8e1f403c4aaf5cb7ba6287dd59ab76b754d12b/diff:/var/lib/docker/overlay2/b335054d9d052e761e01f1528d9e374a3457917ea01660022441d606a9d98f80/diff:/var/lib/docker/overlay2/d44f3eca3aacbdcdc6440369969992d7cb3b5f7dbb1b64759c433e536695a626/diff",
+                "MergedDir": "/var/lib/docker/overlay2/a9be138ae50d2ea7129b90fad2b850fa1f226180b05db14e6634ddbeeed94700/merged",
+                "UpperDir": "/var/lib/docker/overlay2/a9be138ae50d2ea7129b90fad2b850fa1f226180b05db14e6634ddbeeed94700/diff",
+                "WorkDir": "/var/lib/docker/overlay2/a9be138ae50d2ea7129b90fad2b850fa1f226180b05db14e6634ddbeeed94700/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "volume",
+                "Name": "d69f54a472c353c2b33d6726e5a42b8f025ae73aee480f85750d4e65a272970d",
+                "Source": "/var/lib/docker/volumes/d69f54a472c353c2b33d6726e5a42b8f025ae73aee480f85750d4e65a272970d/_data",
+                "Destination": "/var/lib/postgresql/data",
+                "Driver": "local",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+        "Config": {
+            "Hostname": "b8219dcfc5fd",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "5432/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "POSTGRES_DB=app",
+                "POSTGRES_USER=postgres",
+                "POSTGRES_PASSWORD=MetqwsxcBrn12",
+                "affinity:container==2cd60676f5e8e51232e7b5ec0ab8bbdeab7469709885ed02974a8ab2d0f2d15d",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=en_US.utf8",
+                "PG_MAJOR=10",
+                "PG_VERSION=10.9",
+                "PG_SHA256=958b317fb007e94f3bef7e2a6641875db8f7f9d73db9f283324f3d6e8f5b0f54",
+                "PGDATA=/var/lib/postgresql/data"
+            ],
+            "Cmd": [
+                "postgres"
+            ],
+            "ArgsEscaped": true,
+            "Image": "postgres:10-alpine",
+            "Volumes": {
+                "/var/lib/postgresql/data": {}
+            },
+            "WorkingDir": "",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "eb9a1720fe07b851bdd394bed3b204f30721091a35be0dbfd8bf0c5cb63dc57e",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "house-inventory-tracking-api",
+                "com.docker.compose.service": "db",
+                "com.docker.compose.version": "1.24.1"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "6ebca95dddd3e4d233bd8eace8f08cfc76da5e2700b0ebfe7a19b7604036cb10",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {
+                "5432/tcp": null
+            },
+            "SandboxKey": "/var/run/docker/netns/6ebca95dddd3",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "house-inventory-tracking-api_house-network": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "b8219dcfc5fd",
+                        "db"
+                    ],
+                    "NetworkID": "285e7b75c3e2d977e2e880b36b3b534311d5c758b53567dba39a3c6b5a7326b9",
+                    "EndpointID": "5c29f55c5ad14fd7bd7aaa49912d5b5afa58719f82a53b852bc0800d9d5072bb",
+                    "Gateway": "172.23.0.1",
+                    "IPAddress": "172.23.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:17:00:02",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
